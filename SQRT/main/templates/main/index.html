@@ -1,0 +1,54 @@
+{% load static %}
+<html lang="ru">
+  <!DOCTYPE html>
+  <head>
+    <title>Калькулятор корней</title>
+    <link type="text/css" href="{% static 'main/css/style.css' %}" rel="stylesheet" />
+    <script src="{% static 'main/js/script.js' %}" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/9.4.3/math.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <table class="lang">
+            <tr>
+              <td class="tdlang">
+                <span id="en" class="button_lang current_lang">EN</span>
+              </td>
+              <td class="tdlang"><span id="ru" class="button_lang">RU</span></td>
+            </tr>
+          </table>
+          <ul class="navbar-nav headers-font">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'home' %}" id="headerMainChangeText"></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'help' %}" id="headerSupportChangeText"></a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container mt-5">
+      <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-10 white-transparent-form" style="text-align: center">
+          <form action="{% url 'home' %}" method="post">
+                <div class="form-group">
+                  {% csrf_token %}
+                  <label for="number-input" id="inputNumberChangeText"></label>
+                  <br>
+                  {{form.calc_num}}
+                </div>
+                <button type="submit" class="calc-btn" id="calcBtnChangeText">Вычислить</button>
+                <div class="result mt-4" id="result">{{result}}</div>
+          </form>
+          <div class="result mt-4" id="result"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
